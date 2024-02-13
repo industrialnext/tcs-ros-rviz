@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="pf3400_gazebo" params="ns">
+
+    <gazebo reference="z_column">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="z_carriage">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="inner_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="outer_link">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="hand">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+    <gazebo reference="left_finger">
+      <selfCollide>true</selfCollide>
+	</gazebo>
+	<gazebo reference="right_finger">
+      <selfCollide>true</selfCollide>
+    </gazebo>
+
+    <gazebo>
+      <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+        <robotNamespace>/${ns}</robotNamespace>
+        <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      </plugin>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>
