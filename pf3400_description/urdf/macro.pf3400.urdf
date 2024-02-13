@@ -2,16 +2,9 @@
 <!-- Robot Description ported from the original PF3400SX.urdf file to make robot xacro modular -->
 <robot xmlns:xacro="https://www.ros.org/wiki/xacro">
   <!-- Macro of robot itself -->
-  <xacro:macro name="pf3400sx" params="ns prefix color:=none format:=stl">
-    <!-- Ideally need some parameters here for the visualization -->
-    <material name="white">
-      <color rgba="1 1 1 1"/>
-    </material>
+  <xacro:macro name="pf3400" params="color1:=White color2:=Aluminum">
+    <!-- Place additional parameters here -->
 
-    <material name="aluminum">
-      <color rgba="0.6 0.6 0.6 1"/>
-    </material>
-    
 	<!-- Link & Joint Description -->
     <link name="z_column">
       <visual>
@@ -19,7 +12,7 @@
         <geometry>
           <mesh filename="package://pf3400_description/meshes/PF3400_Z_Column.STL" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="white"/>
+		<material name="${color1}"/>
       </visual>
     </link>
     <joint name="J1" type="prismatic">
@@ -36,7 +29,7 @@
         <geometry>
           <mesh filename="package://pf3400_description/meshes/PF3400_Z_Carriage.STL" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="white"/>
+		<material name="${color1}"/>
       </visual>
     </link>
     <joint name="J2" type="revolute">
@@ -53,7 +46,7 @@
         <geometry>
           <mesh filename="package://pf3400_description/meshes/PF3400_Inner_Link.STL" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="white"/>
+		<material name="${color1}"/>
       </visual>
     </link>
     <joint name="J3" type="revolute">
@@ -70,7 +63,7 @@
         <geometry>
           <mesh filename="package://pf3400_description/meshes/PF3400_Outer_Link.STL" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="white"/>
+		<material name="${color1}"/>
       </visual>
     </link>
     <joint name="J4" type="revolute">
@@ -87,7 +80,7 @@
         <geometry>
           <mesh filename="package://pf3400_description/meshes/PF3400_Hand.STL" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="white"/>
+		<material name="${color1}"/>
       </visual>
     </link>
 	<joint name="J5" type="prismatic">
@@ -112,7 +105,7 @@
         <geometry>
           <mesh filename="package://pf3400_description/meshes/PF3400_Left_Finger.STL" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="aluminum"/>
+		<material name="${color2}"/>
       </visual>
     </link>
 
@@ -122,7 +115,7 @@
         <geometry>
           <mesh filename="package://pf3400_description/meshes/PF3400_Right_Finger.STL" scale="0.001 0.001 0.001"/>
         </geometry>
-        <material name="aluminum"/>
+		<material name="${color2}"/>
       </visual>
     </link>
 	<!-- End of Joint and Link Description -->
