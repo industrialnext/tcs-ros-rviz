@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="pf3400_gazebo" params="ns">
+  <xacro:macro name="pf3400_gazebo" params="ns prefix">
 
     <gazebo reference="z_column">
       <selfCollide>true</selfCollide>
