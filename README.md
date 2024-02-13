@@ -1,31 +1,45 @@
-# pa_rviz_pf3400
-A package for visualizing a PF3400 in real time using RViz. Requires TCS to be running on the PF3400.
+# pa_ros2_pf3400
+This is documentation for the custom ROS2 package put together by IndustrialNext for the PF3400 robot. \
+This package uses original ROS1 code and allows it to be installed as ROS2 package.
 
-### Install
-*Requires ROS and RViz.*
+## Install:
+In order to install this package only into your workspace do all the required steps shown below.
 
-If you already have a catkin workspace, skip to step 2.
-1. Create catkin workspace
-   - `cd ~`
-   - `mkdir my_workspace`
-   - `cd my_workspace`
-   - `catkin_make`
-2. Navigate to src: `cd src` 
-3. Clone project: `git clone .....`
-4. Make
-   - `cd ~/my_workspace`
-   - `catkin_make`
+Create workspace:
+```
+mkdir -p ~/pf3400_ws/src
+```
 
-### Run
-1. Setup TCS on the controller
-2. `source ./devel/setup.bash`
-3. `roslaunch pa_viz_pf3400 bridge.launch ip:="192.168.0.1"`
+Place code inside the `/src` folder:
+```
+git clone git@github.com:industrialnext/tcs-ros-rviz.git -b industrialnext
+```
 
-RViz should pop open with a PF3400 loaded and already live updating. If you want
-to visualize a GPL project, make sure to load both TCS **and** the other project
-using GDE. TCS **must** be running for the visualization to work.
+Source your ROS2 distro (skip if .bashrc does this by default):
+```
+source /opt/ros/<distro name>/setup.bash
+```
 
+Resolve dependecies:
+```
+rosdep install --ignore-src --from-paths src -y -r
+```
 
-*Permission is granted to customers of Precise Automation to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, so long as this notice is included with any modified or unmodified version of this software.*
+Install package:
+```
+colcon build --symlink-install
+```
 
-*This software is provided "as is," without warranty of any kind, express or implied.  In no event shall Precise Automation be held liable for any direct, indirect, incidental, special or consequential damages arising out of the use of or inability to use this software.*
+## Run package:
+Open your workspace;
+```
+cd ~/pf3400_ws
+```
+
+Source installed package:
+```
+source ./install/setup.bash
+```
+
+Run demo (as of Feb 12, 2024 it is not working, needs to be updated to ROS2 code):
+ros2 launch pf3400_motion_control_example bridge.launch ip:="192.168.0.1"
