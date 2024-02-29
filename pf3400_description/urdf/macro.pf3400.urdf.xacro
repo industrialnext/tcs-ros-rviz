@@ -96,7 +96,7 @@
       <axis xyz="0 -1 0"/>
       <origin xyz="0.078573 0 -0.04269" rpy="0 0 0"/>
       <limit effort="1000.0" lower="0.051954" upper="0.070" velocity="0.5"/>
-      <mimic joint="J5" multiplier="1"/>
+      <mimic joint="${prefix}J5" multiplier="1"/>
     </joint>
 
 	<link name="${prefix}left_finger">
