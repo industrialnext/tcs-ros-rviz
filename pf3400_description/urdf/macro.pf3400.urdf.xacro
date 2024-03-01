@@ -2,79 +2,79 @@
 <!-- Robot Description ported from the original PF3400SX.urdf file to make robot xacro modular -->
 <robot xmlns:xacro="https://www.ros.org/wiki/xacro">
   <!-- Macro of robot itself -->
-  <xacro:macro name="pf3400" params="prefix color1:=White color2:=Aluminum">
+  <xacro:macro name="pf3400" params="color1:=White color2:=Aluminum">
     <!-- Place additional parameters here -->
 
 	<!-- Link & Joint Description -->
-    <link name="${prefix}z_column">
+    <link name="z_column">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://pf3400_description/meshes/PF3400_Z_Column.STL" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://pf3400_description/meshes/z_column.STL" scale="0.001 0.001 0.001"/>
         </geometry>
 		<material name="${color1}"/>
       </visual>
     </link>
-    <joint name="${prefix}J1" type="prismatic">
-      <parent link="${prefix}z_column"/>
-      <child link="${prefix}z_carriage"/>
+    <joint name="J1" type="prismatic">
+      <parent link="z_column"/>
+      <child link="z_carriage"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="0.03005 -0.0198 0.17535" rpy="0 0 0"/>
-      <limit effort="1000.0" lower="0.0015" upper="0.4015" velocity="0.5"/>
+      <origin xyz="-0.071 0.000 0.15685" rpy="0 0 0"/>
+      <limit effort="1000.0" lower="0.015" upper="0.415" velocity="0.5"/>
     </joint>
 
-    <link name="${prefix}z_carriage">
+    <link name="z_carriage">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://pf3400_description/meshes/PF3400_Z_Carriage.STL" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://pf3400_description/meshes/z_carriage.STL" scale="0.001 0.001 0.001"/>
         </geometry>
 		<material name="${color1}"/>
       </visual>
     </link>
-    <joint name="${prefix}J2" type="revolute">
-      <parent link="${prefix}z_carriage"/>
-      <child link="${prefix}inner_link"/>
+    <joint name="J2" type="revolute">
+      <parent link="z_carriage"/>
+      <child link="inner_link"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="0.173001 0.020 .0235" rpy="0 0 0"/>
+      <origin xyz="0.071 0.000 -0.051" rpy="0 0 0"/>
       <limit effort="1000.0" lower="-1.62316" upper="1.62316" velocity="0.5"/>
     </joint>
 
-    <link name="${prefix}inner_link">
+    <link name="inner_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://pf3400_description/meshes/PF3400_Inner_Link.STL" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://pf3400_description/meshes/inner_link.STL" scale="0.001 0.001 0.001"/>
         </geometry>
 		<material name="${color1}"/>
       </visual>
     </link>
-    <joint name="${prefix}J3" type="revolute">
-      <parent link="${prefix}inner_link"/>
-      <child link="${prefix}outer_link"/>
+    <joint name="J3" type="revolute">
+      <parent link="inner_link"/>
+      <child link="outer_link"/>
       <axis xyz="0 0 1"/>
-      <origin xyz="0.302 0 -0.072285" rpy="0 0 0"/>
+      <origin xyz="0.302 0 -0.073908" rpy="0 0 0"/>
       <limit effort="1000.0" lower="0.20944" upper="6.07375" velocity="0.5"/>
 	</joint>
 
-	<link name="${prefix}outer_link">
+	<link name="outer_link">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://pf3400_description/meshes/PF3400_Outer_Link.STL" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://pf3400_description/meshes/outer_link.STL" scale="0.001 0.001 0.001"/>
         </geometry>
 		<material name="${color1}"/>
       </visual>
     </link>
-    <joint name="${prefix}J4" type="revolute">
-      <parent link="${prefix}outer_link"/>
-      <child link="${prefix}hand"/>
+    <joint name="J4" type="revolute">
+      <parent link="outer_link"/>
+      <child link="hand"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.289 0 -0.032942" rpy="0 0 0"/>
       <limit effort="1000.0" lower="-16.7552" upper="16.7552" velocity="0.5"/>
     </joint>
 
-	<link name="${prefix}hand">
+	<link name="hand">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
@@ -83,37 +83,37 @@
 		<material name="${color1}"/>
       </visual>
     </link>
-	<joint name="${prefix}J5" type="prismatic">
-      <parent link="${prefix}hand"/>
-      <child link="${prefix}left_finger"/>
+	<joint name="J5" type="prismatic">
+      <parent link="hand"/>
+      <child link="left_finger"/>
       <axis xyz="0 1 0"/>
-      <origin xyz="0.078573 0 -0.04269" rpy="0 0 0"/>
+      <origin xyz="0.0783 0.00 -0.0413" rpy="0 0 0"/>
       <limit effort="1000.0" lower="0.051954" upper="0.070" velocity="0.5"/>
     </joint>
-	<joint name="${prefix}J5_mirror" type="prismatic">
-	  <parent link="${prefix}hand"/>
-      <child link="${prefix}right_finger"/>
+	<joint name="J5_mirror" type="prismatic">
+	  <parent link="hand"/>
+      <child link="right_finger"/>
       <axis xyz="0 -1 0"/>
-      <origin xyz="0.078573 0 -0.04269" rpy="0 0 0"/>
+      <origin xyz="0.0783 0.00 -0.0413" rpy="0 0 0"/>
       <limit effort="1000.0" lower="0.051954" upper="0.070" velocity="0.5"/>
-      <mimic joint="${prefix}J5" multiplier="1"/>
+      <mimic joint="J5" multiplier="1"/>
     </joint>
 
-	<link name="${prefix}left_finger">
+	<link name="left_finger">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://pf3400_description/meshes/PF3400_Left_Finger.STL" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://pf3400_description/meshes/left_finger.STL" scale="0.001 0.001 0.001"/>
         </geometry>
 		<material name="${color2}"/>
       </visual>
     </link>
 
-    <link name="${prefix}right_finger">
+    <link name="right_finger">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://pf3400_description/meshes/PF3400_Right_Finger.STL" scale="0.001 0.001 0.001"/>
+          <mesh filename="package://pf3400_description/meshes/right_finger.STL" scale="0.001 0.001 0.001"/>
         </geometry>
 		<material name="${color2}"/>
       </visual>
