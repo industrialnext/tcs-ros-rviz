@@ -120,7 +120,7 @@
     <joint name="ee_part_joint" type="fixed">
       <parent link="hand"/>
       <child link="part"/>
-      <origin xyz="0.12255 0.000 -0.0733" rpy="0 0 0"/>
+      <origin xyz="0.12255 0.000 -0.0733" rpy="3.14 0 0"/>
     </joint>
     <link name="part"/>
     <!-- End of Joint and Link Description -->
