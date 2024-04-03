@@ -117,12 +117,6 @@
 		<material name="${color2}"/>
       </visual>
     </link>
-    <joint name="${prefix}ee_part_joint" type="fixed">
-      <parent link="${prefix}hand"/>
-      <child link="${prefix}part"/>
-      <origin xyz="0.12255 0.000 -0.0733" rpy="3.14 0 0"/>
-    </joint>
-    <link name="${prefix}part"/>
     <!-- End of Joint and Link Description -->
   </xacro:macro>
 </robot>
